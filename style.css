@@ -22,24 +22,72 @@ main {
   justify-content: center;
   height: 100%;
   width: 90%; }
-  main button {
+  main #add {
     border: none;
     border-radius: 50%;
+    bottom: 3rem;
+    background: #2c85c5;
+    cursor: pointer;
     height: 50px;
-    width: 50px;
-    z-index: 2;
-    right: 0;
-    bottom: 0;
-    position: absolute; }
+    outline: none;
+    position: absolute;
+    right: 4rem;
+    width: 50px; }
+    main #add:hover {
+      background: #1e5b86; }
+    main #add i {
+      color: white; }
 
 table {
   border-collapse: collapse; }
 
-td,
-th {
-  border: 1px solid #999;
+thead th,
+thead td,
+tbody th,
+tbody td {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
   padding: 0.5rem;
   text-align: left; }
+  thead th:nth-child(1),
+  thead td:nth-child(1),
+  tbody th:nth-child(1),
+  tbody td:nth-child(1) {
+    border-left: 1px solid black; }
+  thead th:nth-child(4),
+  thead td:nth-child(4),
+  tbody th:nth-child(4),
+  tbody td:nth-child(4) {
+    border-right: 1px solid black; }
+
+.modal-container {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); }
+
+.modal {
+  background-color: #f2f0f1;
+  border: 1px solid #252125;
+  width: 30%;
+  /* Could be more or less, depending on screen size */
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 15px;
+  z-index: 2; }
+  .modal form input,
+  .modal form select {
+    width: 100%; }
 
 /* Footer */
 footer {
