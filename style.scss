@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
 /* Basic resets */
 * {
   padding: 0;
@@ -6,9 +7,16 @@
 }
 /* Basic resets */
 
+// Variables
+$lightGrey: #78787c;
+$lightBlue: #2c9dd7;
+$darkBlue: #164e6c;
+
 body {
+  font-size: 10px;
   display: flex;
   flex-direction: column;
+  font-family: "Lato", sans-serif;
   justify-content: space-between;
   align-items: center;
   height: 100vh;
@@ -16,14 +24,57 @@ body {
 }
 
 header {
-  padding: 15px 0;
+  background: $darkBlue;
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  padding: 1rem 0;
+  text-align: center;
+  width: 100%;
+}
+nav {
+  display: flex;
+  font-size: 1.2rem;
+  justify-content: center;
+  margin: 15px;
+  ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    width: 50%;
+    li {
+      border-bottom: 3px solid transparent;
+      color: #9ba7bd;
+      transition: 0.3s ease all;
+      cursor: pointer;
+      &:hover {
+        border-color: $darkBlue;
+      }
+    }
+  }
+}
+
+.active {
+  border-bottom: 3px solid $darkBlue;
+  color: $lightGrey;
+  font-weight: bold;
+}
+
+.filter-status {
+  background: $darkBlue;
+  color: white;
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding: 0.3rem;
+  text-align: center;
+  width: 100%;
 }
 
 main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   height: 100%;
+  margin-top: 50px;
   width: 90%;
   #add {
     border: none;
@@ -37,7 +88,7 @@ main {
     right: 4rem;
     width: 50px;
     &:hover {
-      background: #1e5b86;
+      background: $darkBlue;
     }
     i {
       color: white;
@@ -53,16 +104,43 @@ thead,
 tbody {
   th,
   td {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    font-size: 1rem;
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
     padding: 0.5rem;
     text-align: left;
     &:nth-child(1) {
-      border-left: 1px solid black;
+      border-left: 1px solid #ebebeb;
     }
     &:nth-child(4) {
-      border-right: 1px solid black;
+      text-align: center;
     }
+    &:nth-child(5) {
+      border-right: 1px solid #ebebeb;
+    }
+  }
+}
+
+thead {
+  th {
+    color: #323232;
+    cursor: pointer;
+    transition: 0.3s ease all;
+    &:hover {
+      color: $darkBlue;
+    }
+  }
+}
+tbody {
+  td {
+    color: $darkBlue;
+  }
+}
+
+.cross {
+  cursor: pointer;
+  &:hover {
+    color: red;
   }
 }
 
@@ -83,14 +161,17 @@ tbody {
 .modal {
   background-color: #f2f0f1;
   border: 1px solid #252125;
-  width: 30%; /* Could be more or less, depending on screen size */
-  height: 60%;
+  width: 400px; /* Could be more or less, depending on screen size */
+  height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   padding: 15px;
   z-index: 2;
+  span {
+    font-size: 2.5rem;
+  }
   form {
     input,
     select {
@@ -101,12 +182,14 @@ tbody {
 
 /* Footer */
 footer {
+  background: $darkBlue;
+  color: white;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   bottom: 0;
-  height: 30px;
+  padding: 0.8rem;
   p {
     padding: 0 50px;
     font-size: 13px;
