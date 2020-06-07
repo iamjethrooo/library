@@ -30,10 +30,24 @@ function updateLibrary() {
     statusInput.checked = myLibrary[i].status;
     status.appendChild(statusInput);
 
+    const del = document.createElement("td");
+    const cross = document.createElement("i");
+    cross.classList.add("fas");
+    cross.classList.add("fa-times");
+    cross.addEventListener("click", (e) => {
+      let row = e.target.parentNode.parentNode;
+      console.log(row.rowIndex);
+      myLibrary.splice(row.rowIndex - 1, 1);
+      row.parentNode.removeChild(row);
+    });
+    cross.classList.add("cross");
+    del.appendChild(cross);
+
     row.appendChild(title);
     row.appendChild(author);
     row.appendChild(pages);
     row.appendChild(status);
+    row.appendChild(del);
     tbody.appendChild(row);
   }
 }
@@ -50,7 +64,6 @@ function addBookToLibrary() {
     pages.value,
     readStatus.checked
   );
-  console.log(readStatus.value);
   updateLibrary();
 }
 
