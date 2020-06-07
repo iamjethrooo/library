@@ -20,6 +20,7 @@
             <th>Author</th>
             <th>Pages</th>
             <th>Read Status</th>
+            <th></th>
           </tr>
         </thead>
         <tbody id="books"></tbody>
@@ -27,6 +28,7 @@
       <button id="add"><i class="fas fa-plus"></i></button>
       <div class="modal-container" id="modal-container">
         <div class="modal">
+          <span>Add New Book</span>
           <form action="">
             <label for="title">Title</label>
             <input type="text" id="title" />
@@ -35,10 +37,8 @@
             <label for="pages">Pages</label>
             <input type="number" id="pages" />
             <label for="read-status">Read Status</label>
-            <select id="read-status">
-              <option value="not-read">Not Read</option>
-              <option value="read">Read</option>
-            </select>
+            <input type="checkbox" id="read-status">
+            </input>
             <button type="button" id="add-book">Add Book</button>
           </form>
         </div>
