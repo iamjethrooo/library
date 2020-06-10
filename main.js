@@ -1,5 +1,9 @@
 let myLibrary = [];
 myLibrary[0] = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
+myLibrary[1] = new Book("To Kill A Mockingbird", "Harper Lee", 281, true);
+myLibrary[2] = new Book("The Great Gatsby", "F. Scott Fitzgerald", 218, true);
+myLibrary[3] = new Book("The Catcher in the Rye", "J.D.. Salinger", 277, false);
+myLibrary[4] = new Book("This Side of Paradise", "F. Scott Fitzgerald", 305, true);
 function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
