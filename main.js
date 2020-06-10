@@ -1,9 +1,63 @@
 let myLibrary = [];
-myLibrary[0] = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
-myLibrary[1] = new Book("To Kill A Mockingbird", "Harper Lee", 281, true);
-myLibrary[2] = new Book("The Great Gatsby", "F. Scott Fitzgerald", 218, true);
-myLibrary[3] = new Book("The Catcher in the Rye", "J.D.. Salinger", 277, false);
-myLibrary[4] = new Book("This Side of Paradise", "F. Scott Fitzgerald", 305, true);
+
+function storageAvailable(type) {
+  var storage;
+  try {
+    storage = window[type];
+    var x = "__storage_test__";
+    storage.setItem(x, x);
+    storage.removeItem(x);
+    return true;
+  } catch (e) {
+    return (
+      e instanceof DOMException &&
+      // everything except Firefox
+      (e.code === 22 ||
+        // Firefox
+        e.code === 1014 ||
+        // test name field too, because code might not be present
+        // everything except Firefox
+        e.name === "QuotaExceededError" ||
+        // Firefox
+        e.name === "NS_ERROR_DOM_QUOTA_REACHED") &&
+      // acknowledge QuotaExceededError only if there's something already stored
+      storage &&
+      storage.length !== 0
+    );
+  }
+}
+
+if (storageAvailable("localStorage")) {
+  if (!localStorage.getItem("myLibrary")) {
+    // Populate storage
+    myLibrary[0] = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
+    myLibrary[1] = new Book("To Kill A Mockingbird", "Harper Lee", 281, true);
+    myLibrary[2] = new Book(
+      "The Great Gatsby",
+      "F. Scott Fitzgerald",
+      218,
+      true
+    );
+    myLibrary[3] = new Book(
+      "The Catcher in the Rye",
+      "J.D.. Salinger",
+      277,
+      false
+    );
+    myLibrary[4] = new Book(
+      "This Side of Paradise",
+      "F. Scott Fitzgerald",
+      305,
+      true
+    );
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+  } else {
+    myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+  }
+} else {
+  // Too bad, no local storage for us
+}
+
 function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
@@ -15,7 +69,7 @@ Book.prototype.info = function () {
   return `${this.title} by ${this.author}, ${this.pages} pages`;
 };
 
-function updateLibrary() {
+function updateTable() {
   tbody.innerHTML = "";
   for (let i = 0; i < myLibrary.length; i++) {
     const row = document.createElement("tr");
@@ -36,6 +90,7 @@ function updateLibrary() {
     statusInput.addEventListener("click", () => {
       let row = statusInput.parentNode.parentNode;
       myLibrary[row.rowIndex - 1].status = statusInput.checked;
+      updateLibrary();
     });
 
     status.appendChild(statusInput);
@@ -48,6 +103,7 @@ function updateLibrary() {
       let row = e.target.parentNode.parentNode;
       console.log(row.rowIndex);
       myLibrary.splice(row.rowIndex - 1, 1);
+      updateLibrary();
       row.parentNode.removeChild(row);
     });
     cross.classList.add("cross");
@@ -60,6 +116,10 @@ function updateLibrary() {
     row.appendChild(del);
     tbody.appendChild(row);
   }
+}
+
+function updateLibrary() {
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
 const tbody = document.querySelector("#books");
 
@@ -113,6 +173,7 @@ function addBookToLibrary() {
     pages.value,
     readStatus.checked
   );
+  updateTable();
   updateLibrary();
 }
 
@@ -130,5 +191,5 @@ window.addEventListener("click", (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  updateLibrary();
+  updateTable();
 });
