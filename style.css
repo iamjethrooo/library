@@ -68,15 +68,16 @@ main {
     border: none;
     border-radius: 50%;
     bottom: 3rem;
-    background: #2c85c5;
+    background: #164e6c;
     cursor: pointer;
     height: 50px;
     outline: none;
     position: absolute;
     right: 4rem;
+    transition: 0.3s all;
     width: 50px; }
     main #add:hover {
-      background: #164e6c; }
+      background: #2c9dd7; }
     main #add i {
       color: white; }
 
@@ -119,7 +120,8 @@ tbody td {
   color: #164e6c; }
 
 .cross {
-  cursor: pointer; }
+  cursor: pointer;
+  transition: 0.3s all; }
   .cross:hover {
     color: red; }
 

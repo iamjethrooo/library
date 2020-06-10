@@ -81,15 +81,16 @@ main {
     border: none;
     border-radius: 50%;
     bottom: 3rem;
-    background: #2c85c5;
+    background: $darkBlue;
     cursor: pointer;
     height: 50px;
     outline: none;
     position: absolute;
     right: 4rem;
+    transition: 0.3s all;
     width: 50px;
     &:hover {
-      background: $darkBlue;
+      background: $lightBlue;
     }
     i {
       color: white;
@@ -140,6 +141,7 @@ tbody {
 
 .cross {
   cursor: pointer;
+  transition: 0.3s all;
   &:hover {
     color: red;
   }
