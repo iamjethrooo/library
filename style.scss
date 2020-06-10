@@ -23,7 +23,8 @@ body {
   width: 100vw;
 }
 
-header {
+header,
+.modal span {
   background: $darkBlue;
   color: white;
   font-size: 3rem;
@@ -160,23 +161,40 @@ tbody {
 
 .modal {
   background-color: #f2f0f1;
-  border: 1px solid #252125;
+  border: none;
+  box-shadow: 0 10px 50px #000000;
+  outline: none;
   width: 400px; /* Could be more or less, depending on screen size */
   height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  padding: 15px;
+  justify-content: space-between;
   z-index: 2;
   span {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   form {
+    font-size: 1rem;
+    padding: 15px 15px 0 15px;
     input,
     select {
       width: 100%;
     }
+  }
+}
+#add-book {
+  bottom: 0;
+  border: none;
+  background: $darkBlue;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 15px;
+  outline: none;
+  padding: 10px;
+  transition: 0.3s all;
+  &:hover {
+    background: $lightBlue;
   }
 }
 
